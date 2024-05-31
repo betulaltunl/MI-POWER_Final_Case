@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Veri Analizi Uygulaması</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #CDE8E5;
+      font-family: Arial, sans-serif;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #EEF7FF;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #7AB2B2;
+      width: 400px;
+      height: 200px;
+      margin: 20px auto;
+    }
+
+    h1 {
+      font-size: 34px;
+      margin-bottom: 2px;
+    }
+    
+    .title-container {
+            text-align: center; 
+        }
+        .title-container h2 {
+            display: inline-block;
+            font-size: 24px;   
+            margin-bottom: 2px; 
+            display: inline-block; 
+
+        }
+        .title-container a {
+            display: inline-block; 
+            margin-left: 10px; 
+            font-size: 24px;   
+            color: inherit;    
+            text-decoration: none; 
+        }
+        .title-container a:hover {
+            color: rgb(236, 103, 13); 
+        }
+    input[type="file"] {
+      padding: 10px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-size: 30px;
+    }
+    button {
+      border: none;
+      border-radius: 5px;
+      background-color: #4D869C;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 15px 35px;
+      margin: 10px 0;
+    }
+
+    #file-name {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSV Dosyasını Yükle</h1>
+  <div class="title-container">
+  <h2>Betül Altunel</h2>
+  <a href="https://github.com/betulaltunl" target="_blank">
+    <i class="fab fa-github"></i>
+  </a><br>
+  <h2>Şevval Mertoğlu</h2>
+  <a href="https://github.com/sevvalmertoglu" target="_blank">
+  <i class="fab fa-github"></i>
+  </a><br>
+  <h2>Rana Gül Serpil</h2>
+  <a href="https://github.com/ranaserpill" target="_blank">
+  <i class="fab fa-github"></i>
+  </a><br>
+  <h2>Buse Salı</h2>
+  <a href="https://github.com/busesali" target="_blank">
+  <i class="fab fa-github"></i>
+  </a>
+  </div>
+  
+  <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+    <button type="button" id="file-selector">Dosya Seç</button>
+    <input type="file" name="file" id="file-input" style="display: none;">
+    <span id="file-name"></span>
+    <br>
+    <button type="submit">Yükle</button>
+  </form>
+
+  <script>
+    const fileSelector = document.getElementById('file-selector');
+    const fileInput = document.getElementById('file-input');
+    const fileNameSpan = document.getElementById('file-name');
+
+    fileSelector.addEventListener('click', () => {
+      fileInput.click();
+    });
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length > 0) {
+        fileNameSpan.textContent = 'Seçilen Dosya: ' + fileInput.files[0].name;
+      } else {
+        fileNameSpan.textContent = '';
+      }
+    });
+  </script>
+</body>
+</html>

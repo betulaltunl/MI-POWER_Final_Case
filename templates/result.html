@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analiz Sonuçları</title>
+    <style>
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #CDE8E5;
+            font-family: Arial, sans-serif;
+        }
+        .results {
+            background-color: #EEF7FF;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #7AB2B2;
+            width: 90%;
+            margin: 20px auto;
+            overflow-x: auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 34px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .table th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        img{
+            width: 50px;
+            height: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="results">
+        <h1>Veri Seti Analiz Sonuçları</h1>
+        <p><strong>Örnek Sayısı:</strong> {{ num_samples }}</p>
+        <p><strong>Özellik Sayısı:</strong> {{ num_features }}</p>
+        <p><strong>Kategorik Özellikler:</strong> {{ cat_cols | join(', ') }}</p>
+        <p><strong>Sayısal Özellikler:</strong> {{ num_cols | join(', ') }}</p>
+        <p><strong>Kategorik Görünümlü Kardinal Özellikler:</strong> {{ cat_but_car | join(', ') }}</p>
+        <p><strong>Sayısal Görünümlü Kategorik Özellikler:</strong> {{ num_but_cat | join(', ') }}</p>
+        
+        
+        <h2>First 5 Rows</h2>
+        <div>{{ head_html|safe }}</div>
+        
+        
+        <h2>Last 5 Rows</h2>
+        <div>{{ tail_html|safe }}</div>
+
+        <h2>Heart Disease Distribution</h2>
+        <div>{{ pie_chart | safe }}</div>
+        
+        <h2>Boxplot of Variables</h2>
+        <div>{{ boxplot | safe }}</div>
+        
+        <h2>Her Sütundaki Benzersiz Değer Sayıları</h2>
+        <div>{{ unique_counts_plot | safe }}</div>
+
+        
+        <h2>Missing Values Plot</h2>
+        <div> {{ missing_values_plot|safe }}</div>
+        
+        <h2>Correlation Heatmap</h2>
+        <div>{{ correlation_heatmap | safe }}</div>
+        
+        <h2>Kategorik Özellik Özetleri</h2>
+        {% for plot in cat_summary_plots %}
+            <div>{{ plot | safe }}</div>
+        {% endfor %}
+        
+        <h2>Sayısal Özellik Özetleri</h2>
+        {% for plot in num_summary_plots %}
+            <div>{{ plot | safe }}</div>
+        {% endfor %}
+        
+        <h2>Kategorik Özellikler ve Heart Disease İlişkisi</h2>
+        {% for plot in target_cat_plots %}
+            <div>{{ plot | safe }}</div>
+        {% endfor %}
+        
+        <h2>Sayısal Özellikler ve Heart Disease İlişkisi</h2>
+        {% for plot in target_num_plots %}
+            <div>{{ plot | safe }}</div>
+        {% endfor %}
+        
+        <h2>Aykırı Değer Analizi</h2>
+        {% for plot in outlier_plots %}
+            <div>{{ plot | safe }}</div>
+        {% endfor %}
+
+        <!-- Confusion Matrix -->
+        <div>
+            <h2>Confusion Matrix</h2>
+            <img src="data:image/png;base64,{{ confusion_matrix }}" alt="Confusion Matrix">
+        </div>
+
+
+    </div>
+</body>
+</html>
