@@ -11,14 +11,14 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #CDE8E5;
+            background-color: #FFBF78;
             font-family: Arial, sans-serif;
         }
         .results {
-            background-color: #EEF7FF;
+            background-color: #FEFFD2;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 20px #7AB2B2;
+            box-shadow: 0 0 20px #FF7D29;
             width: 90%;
             margin: 20px auto;
             overflow-x: auto;
@@ -75,10 +75,6 @@
         <h2>Boxplot of Variables</h2>
         <div>{{ boxplot | safe }}</div>
         
-        <h2>Her Sütundaki Benzersiz Değer Sayıları</h2>
-        <div>{{ unique_counts_plot | safe }}</div>
-
-        
         <h2>Missing Values Plot</h2>
         <div> {{ missing_values_plot|safe }}</div>
         
@@ -113,8 +109,17 @@
         <!-- Confusion Matrix -->
         <div>
             <h2>Confusion Matrix</h2>
-            <img src="data:image/png;base64,{{ confusion_matrix }}" alt="Confusion Matrix">
+            <img src="data:image/png;base64,{{ confusion_matrix }}" alt="Confusion Matrix" style="width: 600px; height: 400px;">
         </div>
+
+        <h2>Training Set Accuracy</h2>
+        <p>{{ train_accuracy }}</p>     
+
+        <h2>Model Accuracy</h2>
+        <p>{{ accuracy }}</p>
+
+        <h2>Classification Report</h2>
+        <pre>{{ classification_report }}</pre>
 
 
     </div>
