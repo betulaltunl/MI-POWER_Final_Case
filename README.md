@@ -38,7 +38,7 @@ etmektir.
 
 1. Depoyu klonlayın:
      
-* git clone https://github.com/betulaltunl/MI-POWER-Final-Case.git
+* git clone https://github.com/betulaltunl/MI-POWER_Final_Case.git
  
 
 2. Proje dizinine gidin:
